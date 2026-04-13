@@ -1,0 +1,53 @@
+/* --- Element Types & Split Backgrounds --- */
+.split-bg {
+    position: relative;
+    background-color: transparent !important;
+}
+.split-bg > * {
+    position: relative;
+    z-index: 2;
+}
+.split-bg::before, .split-bg::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: normal; 
+}
+.split-bg::before {
+    left: 0;
+    right: 50%;
+    background-position: center left;
+}
+.split-bg::after {
+    left: 50%;
+    right: 0;
+    background-position: center right;
+}
+.single-type::before {
+    right: 0;
+    background-position: center;
+}
+
+
+.bg-bg-normal::before, .bg-bg2-normal::after { background-color: #A8A77A; background-image: url('../assets/type_styles_big/normal_type_pokemon_background.jpg'); }
+.bg-bg-fire::before, .bg-bg2-fire::after { background-color: #EE8130; background-image: url('../assets/type_styles_big/fire_type_pokemon_background.jpg'); }
+.bg-bg-water::before, .bg-bg2-water::after { background-color: #6390F0; background-image: url('../assets/type_styles_big/water_type_pokemon_background.jpg'); }
+.bg-bg-electric::before, .bg-bg2-electric::after { background-color: #F7D02C; background-image: url('../assets/type_styles_big/electric_type_pokemon_background.jpg'); }
+.bg-bg-grass::before, .bg-bg2-grass::after { background-color: #7AC74C; background-image: url('../assets/type_styles_big/grass_type_pokemon_background.jpg'); }
+.bg-bg-ice::before, .bg-bg2-ice::after { background-color: #96D9D6; background-image: url('../assets/type_styles_big/ice_type_pokemon_background.jpg'); }
+.bg-bg-fighting::before, .bg-bg2-fighting::after { background-color: #C22E28; background-image: url('../assets/type_styles_big/fighting_type_pokemon_background.jpg'); }
+.bg-bg-poison::before, .bg-bg2-poison::after { background-color: #A33EA1; background-image: url('../assets/type_styles_big/poison_type_pokemon_background.jpg'); }
+.bg-bg-ground::before, .bg-bg2-ground::after { background-color: #E2BF65; background-image: url('../assets/type_styles_big/ground_type_pokemon_background.jpg'); }
+.bg-bg-flying::before, .bg-bg2-flying::after { background-color: #A98FF3; background-image: url('../assets/type_styles_big/flying_type_pokemon_background.jpg'); }
+.bg-bg-psychic::before, .bg-bg2-psychic::after { background-color: #F95587; background-image: url('../assets/type_styles_big/psychic_type_pokemon_background.jpg'); }
+.bg-bg-bug::before, .bg-bg2-bug::after { background-color: #A6B91A; background-image: url('../assets/type_styles_big/bug_type_pokemon_background.jpg'); }
+.bg-bg-rock::before, .bg-bg2-rock::after { background-color: #B6A136; background-image: url('../assets/type_styles_big/rock_type_pokemon_background.jpg'); }
+.bg-bg-ghost::before, .bg-bg2-ghost::after { background-color: #735797; background-image: url('../assets/type_styles_big/ghost_type_pokemon_background.jpg'); }
+.bg-bg-dragon::before, .bg-bg2-dragon::after { background-color: #6F35FC; background-image: url('../assets/type_styles_big/dragon_type_pokemon_background.jpg'); }
+.bg-bg-dark::before, .bg-bg2-dark::after { background-color: #705898; background-image: url('../assets/type_styles_big/dark_type_pokemon_background.jpg'); }
+.bg-bg-steel::before, .bg-bg2-steel::after { background-color: #B7B7CE; background-image: url('../assets/type_styles_big/steel_type_pokemon_background.jpg'); }
+.bg-bg-fairy::before, .bg-bg2-fairy::after { background-color: #D685AD; background-image: url('../assets/type_styles_big/fairy_type_pokemon_background.jpg'); }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Master-Dex</title>
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="./styles/mainStyle.css">
+    <link rel="stylesheet" href="./styles/cardStyle.css">
+    <link rel="stylesheet" href="./styles/dialogStyle.css">
+    <link rel="stylesheet" href="./styles/loading.css">
+    <link rel="stylesheet" href="./styles/typeStyles.css">
+    <link rel="icon" type="image/x-icon" href="./assets/images/Master Ball-Design als Favicon.png">
+    <script defer src="./scripts/template.js"></script>
+    <script defer src="./scripts/dialog.js"></script>
+
+</head>
+
+<body onload="init()">
+    <header>
+        <div class="maxSize">
+            <div class="headerDiv">
+                <div class="headerImgDiv">
+                    <img class="logo" onclick="renderGalaray()" src="./assets/images/Pokedex_Logo.png" alt="Pokemondex logo" href="index.html" style="cursor: pointer;">
+                </div>
+                <div class="searchDiv">
+                    <input id="searchBar" type="text" placeholder="Search Pokemon (min. 3 Letters)">
+                    <button onclick="dexSearch()" class="searchBtn">Search Now </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="mainStyle">
+        <div class="maxSize">
+            <section id="mainContent" class="content">
+
+            </section>
+        </div>
+        <div id="spinnerContainer" class="hidden">
+            <img src="./assets/images/pokeball_loading.png" alt="Poke ball" />
+        </div>
+        <dialog id="dialogFunction" onclick="closeDialog()">
+            <div id="dialogContent" onclick=" protectionCloseDialog(event)">
+
+            </div>
+        </dialog>
+        <div class="low">
+            <button id="loadMoreBtn" class="loadBtn" onclick="loadMore()">Load More...</button>
+            <button id="resetSearchBtn" class="loadBtn hidden" onclick="resetSearch()">Reset Search</button>
+        </div>
+    </main>
+    <footer>
+        <div class="maxSize">
+            <div class="footerContent">
+                <img href="index.html" class="logo" src="./assets/images/Pokedex_Logo.png" alt="pokedex logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="cursor: pointer;">
+                <a class="impressum" href="impressum.html" >Impressum</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+
+
+</html>

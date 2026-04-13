@@ -1,0 +1,213 @@
+#dialogFunction {
+  background: linear-gradient(
+    135deg,
+    #1A1A2E,
+    #16213E
+    );
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 0 40px rgba(247,37,133,0.25);
+  border: 1px solid var(--border);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 400px;
+  color: white;
+  max-height: fit-content;
+}
+
+.closeXBtn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 100;
+    transition: 0.3s;
+}
+
+.closeXBtn:hover {
+    color: var(--accent);
+}
+
+#dialogFunction::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+}
+
+.statRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.statName {
+    width: 60px;
+}
+#dialogFunction .cardImg {
+    padding: 24px 0;
+}
+
+#dialogFunction .cardImg img {
+    height: 180px; 
+    z-index: 2;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+}
+progress {
+    flex-grow: 1;
+    height: 10px;
+    border-radius: 5px;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #333;
+    border-radius: 5px;
+}
+
+progress::-webkit-progress-value {
+    background-color: var(--accent);
+    border-radius: 5px;
+}
+
+.dialogHeaderBg {
+    margin: -24px -24px 0 -24px; 
+    border-radius: 20px 20px 0 0;
+    background: var(--bg-card);
+}
+
+.elemntStyleDialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -15px; 
+    position: relative; 
+    z-index: 10;
+}
+
+.cardMain {
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+}
+
+.top {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+
+.menuBtn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 8px 16px;
+    color: var(--text-secondary);
+    font-size: 16px;
+    font-weight: bold;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.menuBtn:hover {
+    background: rgba(247, 37, 133, 0.1); 
+    color: var(--text-main);
+    box-shadow: 0 0 15px rgba(247, 37, 133, 0.4); 
+    border-color: var(--accent);
+}
+
+/* Tab Content Typography */
+.contentMenu {
+    padding: 16px 0;
+    min-height: 140px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.contentMenu p {
+    margin-bottom: 12px;
+    font-size: 16px;
+    color: var(--text-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+    padding-bottom: 4px;
+}
+
+.contentMenu p span {
+    color: var(--text-main);
+    font-weight: bold;
+}
+
+/* Navigation Bottom Bar */
+.btnMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+#previousBtn, #nextBtn {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8px 20px;
+    color: var(--text-main);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+#previousBtn:hover, #nextBtn:hover {
+    background: var(--primary);
+    border-color: var(--primary-light);
+    box-shadow: 0 0 15px rgba(157, 78, 221, 0.5); 
+}
+
+#pageNumber {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Stat row tweaks */
+.statName {
+    width: 70px;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.statRow span:last-child {
+    font-weight: bold;
+    color: var(--text-main);
+    width: 30px;
+    text-align: right;
+}
+
+progress::-webkit-progress-value {
+    background-color: var(--accent);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(247, 37, 133, 0.5); 
+}
