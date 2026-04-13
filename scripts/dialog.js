@@ -18,8 +18,13 @@ function openDialog(i){
             currentArrayPosition = j;
         }
     }
+
+    const pokemon = myPokeDex[i];
+    const totalCount = currentDisplayedPokemon.length;
+    const dialogData = prepareDialogData(pokemon, currentArrayPosition, totalCount);
     
-    myDialogContent.innerHTML = getHtmlForDialog(i);
+    myDialogContent.innerHTML = getHtmlForDialog(dialogData);
+    
     if (!myDialogOpener.open) {
         myDialogOpener.showModal();
     }
@@ -60,6 +65,5 @@ function previousCard(){
 function showTab(tabId) {
     document.getElementById('aboutContent').style.display = 'none';
     document.getElementById('statsContent').style.display = 'none';
-    document.getElementById('evolutionContent').style.display = 'none';
     document.getElementById(tabId).style.display = 'block';
 }

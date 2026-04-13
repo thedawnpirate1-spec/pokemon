@@ -1,102 +1,76 @@
-function getBackgroundClasses(types) {
-    if (types.length === 1) {
-        return `split-bg single-type bg-bg-${types[0].type.name}`;
-    } else {
-        return `split-bg bg-bg-${types[0].type.name} bg-bg2-${types[1].type.name}`;
-    }
+function getPokemonTypesHtml(types) {
+    return types
+        .map(type => {
+            const typeName = capitalize(type.type.name);
+            return `<img class="typeIcon" src="./assets/type_styles_small/Type=${typeName}.svg" alt="${typeName}" />`;
+        })
+        .join('\n');
 }
 
-function getHtmlForGalaryObject(i){
-    const pokemon = myPokeDex[i];
-    const name = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-    const id = pokemon.id;
-    const imgUrl = pokemon.sprites.other["official-artwork"].front_default || pokemon.sprites.front_default;
-    const bgClasses = getBackgroundClasses(pokemon.types);
-    
-    let typesHtml = '';
-    for (let j = 0; j < pokemon.types.length; j++) {
-        let typeNameUpper = pokemon.types[j].type.name.charAt(0).toUpperCase() + pokemon.types[j].type.name.slice(1);
-        typesHtml += `<img class="typeIcon" src="./assets/type_styles_small/Type=${typeNameUpper}.svg" alt="${typeNameUpper}" />\n`;
-    }
-
+function getAboutHtml(aboutData) {
     return `
-    <div class="itemCard" onclick="openDialog(${i})">
-        <div class="cardHeader">
-            <p>#${id} ${name}</p>
+        <p>Height: <span>${aboutData.height} m</span></p>
+        <p>Weight: <span>${aboutData.weight} kg</span></p>
+        <p>Category: <span>${aboutData.category}</span></p>
+        <p>Abilities: <span>${aboutData.abilities}</span></p>
+    `;
+}
+
+function getStatsHtml(statsData) {
+    return statsData.map(stat => `
+        <div class="statRow">
+            <span class="statName">${stat.name}:</span> 
+            <progress value="${stat.value}" max="150"></progress> 
+            <span>${stat.value}</span>
         </div>
-        <div class="cardImg ${bgClasses}">
-            <img src="${imgUrl}" alt="${name}">
+    `).join('');
+}
+
+function getHtmlForGalaryObject(data) {
+    return `
+    <div class="itemCard" onclick="openDialog(${data.index})">
+        <div class="cardHeader">
+            <p>#${data.id} ${data.name}</p>
+        </div>
+        <div class="cardImg ${data.bgClasses}">
+            <img src="${data.imgUrl}" alt="${data.name}">
         </div>
         <div class="elemntStyle">
-            ${typesHtml}
+            ${data.typesHtml}
         </div>
     </div>
     `;
 }
 
-function getHtmlForDialog(i){
-    const pokemon = myPokeDex[i];
-    const name = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-    const id = pokemon.id;
-    const imgUrl = pokemon.sprites.other["official-artwork"].front_default || pokemon.sprites.front_default;
-    const bgClasses = getBackgroundClasses(pokemon.types);
-    
-    let typesHtml = '';
-    for (let j = 0; j < pokemon.types.length; j++) {
-        let typeNameUpper = pokemon.types[j].type.name.charAt(0).toUpperCase() + pokemon.types[j].type.name.slice(1);
-        typesHtml += `<img class="typeIcon" src="./assets/type_styles_small/Type=${typeNameUpper}.svg" alt="${typeNameUpper}" />\n`;
-    }
-    
-    // About
-    const heightMeters = (pokemon.height / 10).toFixed(1);
-    const weightKg = (pokemon.weight / 10).toFixed(1);
-    const abilities = pokemon.abilities.map(a => a.ability.name).join(', ');
-    const category = pokemon.types.map(t => t.type.name).join(', '); 
-    
-    // Stats
-    const hp = pokemon.stats.find(s => s.stat.name === 'hp').base_stat;
-    const attack = pokemon.stats.find(s => s.stat.name === 'attack').base_stat;
-    const defense = pokemon.stats.find(s => s.stat.name === 'defense').base_stat;
-    const speed = pokemon.stats.find(s => s.stat.name === 'speed').base_stat;
-    
+function getHtmlForDialog(data) {
     return `
     <div class="dialogHeaderBg">
         <div class="cardHeader">
-            <p>#${id} ${name}</p>
+            <p>#${data.id} ${data.name}</p>
             <button class="closeXBtn" onclick="closeDialog()">X</button>
         </div>
-        <div class="cardImg ${bgClasses}">
-            <img src="${imgUrl}" alt="${name}">
+        <div class="cardImg ${data.bgClasses}">
+            <img src="${data.imgUrl}" alt="${data.name}">
         </div>
     </div>
     <div class="elemntStyleDialog">
-        ${typesHtml}
+        ${data.typesHtml}
     </div>
     <div class="cardMain">
         <div class="top">
             <button id="about" class="menuBtn" onclick="showTab('aboutContent')">About</button>
             <button id="stats" class="menuBtn" onclick="showTab('statsContent')">Stats</button>
-            <button id="evolution" class="menuBtn" onclick="showTab('evolutionContent')">Evolution</button>
         </div>
         <div id="bottom" class="bottom">
             <div id="aboutContent" class="contentMenu">
-                <p>Height: <span>${heightMeters} m</span></p>
-                <p>Weight: <span>${weightKg} kg</span></p>
-                <p>Category: <span>${category}</span></p>
-                <p>Abilities: <span>${abilities}</span></p>
+                ${data.aboutHtml}
             </div>
             <div id="statsContent" class="contentMenu" style="display: none;">
-                <div class="statRow"><span class="statName">HP:</span> <progress value="${hp}" max="150"></progress> <span>${hp}</span></div>
-                <div class="statRow"><span class="statName">Attack:</span> <progress value="${attack}" max="150"></progress> <span>${attack}</span></div>
-                <div class="statRow"><span class="statName">Defense:</span> <progress value="${defense}" max="150"></progress> <span>${defense}</span></div>
-                <div class="statRow"><span class="statName">Speed:</span> <progress value="${speed}" max="150"></progress> <span>${speed}</span></div>
-            </div>
-            <div id="evolutionContent" class="contentMenu" style="display: none;">
-                <img src="" alt="" srcset="">
+                ${data.statsHtml}
             </div>
             <div class="btnMenu">
                 <button id="previousBtn" onclick="previousCard()"><img src="./assets/button/arrow_left.svg" alt="Previous"></button>
-                <div id="pageNumber">Page: ${currentArrayPosition + 1}/${currentDisplayedPokemon.length}</div>
+                <div id="pageNumber">Page: ${data.currentArrayPosition + 1}/${data.totalCount}</div>
                 <button id="nextBtn" onclick="nextCard()"><img src="./assets/button/arrow_right.svg" alt="Next"></button>
             </div>
         </div>
